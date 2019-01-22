@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const models = require('../models')
+const secretKey = process.env.JWT_SECRET
 
 exports.register = async (req,res) => {
   try{
@@ -22,7 +24,9 @@ exports.login = async (req,res) => {
   if(showUser){
     const compare = bcrypt.compareSync(req.body.password || '', showUser.password)
     if(compare){
-      res.json(showUser)
+      const token = jwt.sign({showUser},secretKey)
+      const result = showUser
+      res.json({result,token})
     } else{
       res.status(400).json({
         message: 'invalid Password'
