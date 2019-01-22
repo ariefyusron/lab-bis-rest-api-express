@@ -18,10 +18,10 @@ exports.register = async (req,res) => {
 
 exports.login = async (req,res) => {
   const showUser = await models.Users.findOne({
-                      where: {
-                        nim: req.body.nim
-                      }
-                    })
+    where: {
+      nim: req.body.nim
+    }
+  })
   if(showUser){
     const compare = bcrypt.compareSync(req.body.password || '', showUser.password)
     if(compare){
