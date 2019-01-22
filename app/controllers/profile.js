@@ -4,13 +4,13 @@ exports.update = async (req,res) => {
   await models.ProfileUser.update(
     req.body,{
       where: {
-        id: req.params.id
+        id: req.userData.id
       }
     }
   )
   const updateProfile = await models.ProfileUser.findOne({
     where: {
-      user_id: req.params.id
+      user_id: req.userData.id
     }
   })
   res.json(updateProfile)
