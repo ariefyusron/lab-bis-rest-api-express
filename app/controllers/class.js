@@ -22,8 +22,24 @@ exports.store = async (req,res) => {
   res.json(storeClass)
 }
 
+exports.update = async (req,res) => {
+  await models.Class.update(
+    req.body,{
+      where: {
+        id: req.params.id
+      }
+    }
+  )
+  const updateClass = await models.Class.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+  res.json(updateClass)
+}
+
 exports.delete = async (req,res) => {
-  const deleteClass = await models.Class.destroy({
+  await models.Class.destroy({
     where: {
       id: req.params.id
     }

@@ -13,6 +13,28 @@ exports.store = (req,res,next) => {
   }
 }
 
+exports.permission = async (req,res,next) => {
+  const updateClass = await models.MemberClass.findOne({
+    where: {
+      user_id: req.userData.id,
+      class_id: req.params.id
+    }
+  })
+  if (updateClass){
+    if(updateClass.level==='teacher'){
+      next()
+    } else{
+      res.status(400).json({
+        message: 'Error permission'
+      })
+    }
+  } else{
+    res.status(400).json({
+      message: 'Your not member of class'
+    })
+  }
+}
+
 exports.delete = async (req,res,next) => {
   const deleteForeignKey = await models.MemberClass.destroy({
     where: {
