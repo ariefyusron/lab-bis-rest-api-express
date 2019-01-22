@@ -7,7 +7,7 @@ const secretKey = process.env.JWT_SECRET
 exports.register = async (req,res) => {
   try{
     const storeUser = await models.Users.create(req.body)
-    models.ProfileUser.create({user_id: storeUser.id})
+    await models.ProfileUser.create({user_id: storeUser.id})
     res.json(storeUser)
   } catch{
     res.status(400).json({
