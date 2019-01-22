@@ -21,3 +21,14 @@ exports.store = async (req,res) => {
   })
   res.json(storeClass)
 }
+
+exports.delete = async (req,res) => {
+  const deleteClass = await models.Class.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  res.json({
+    message: 'Class successfully deleted'
+  })
+}
