@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Class.associate = function(models) {
     // associations can be defined here
+    Class.hasMany(models.MemberClass, {
+      foreignKey: 'class_id'
+    })
   };
   return Class;
 };
