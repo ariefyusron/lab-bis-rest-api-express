@@ -22,6 +22,9 @@ module.exports = {
           key: 'id'
         }
       },
+      level: {
+        type: Sequelize.ENUM('teacher','student')
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
