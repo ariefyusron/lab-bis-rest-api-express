@@ -1,4 +1,5 @@
 const models = require('../models')
+const host = process.env.HOST
 
 exports.show = async (req,res) => {
   const showUser = await models.ProfileUser.findOne({
@@ -6,7 +7,7 @@ exports.show = async (req,res) => {
       user_id: req.userData.id
     }
   })
-  showUser.img_url = process.env.HOST+showUser.img_url
+  showUser.img_url = host+showUser.img_url
   res.json(showUser)
 }
 
@@ -23,7 +24,7 @@ exports.update = async (req,res) => {
       user_id: req.userData.id
     }
   })
-  updateProfile.img_url = process.env.HOST+updateProfile.img_url
+  updateProfile.img_url = host+updateProfile.img_url
   res.json(updateProfile)
 }
 
@@ -40,6 +41,6 @@ exports.updateImg = async (req,res) => {
       user_id: req.userData.id
     }
   })
-  updateProfile.img_url = process.env.HOST+updateProfile.img_url
+  updateProfile.img_url = host+updateProfile.img_url
   res.json(updateProfile)
 }
