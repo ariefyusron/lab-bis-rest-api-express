@@ -4,7 +4,8 @@ exports.index = async (req,res) => {
   const results = await models.Modul.findAll({
     where: {
       class_id: req.params.idClass
-    }
+    },
+    order: [['updatedAt','DESC']]
   })
   res.json(results)
 }
