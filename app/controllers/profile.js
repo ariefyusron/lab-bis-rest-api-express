@@ -10,6 +10,7 @@ exports.show = async (req,res) => {
 }
 
 exports.update = async (req,res) => {
+  req.body.img_url = req.file.path
   await models.ProfileUser.update(
     req.body,{
       where: {
