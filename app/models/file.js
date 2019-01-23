@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const Modul = sequelize.define('File', {
     class_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
-    name: DataTypes.STRING
+    name: DataTypes.TEXT,
+    file_url: DataTypes.TEXT
   }, {});
   Modul.associate = function(models) {
     // associations can be defined here

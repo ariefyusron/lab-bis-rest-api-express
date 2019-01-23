@@ -23,7 +23,10 @@ module.exports = {
         }
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
+      },
+      file_url: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
