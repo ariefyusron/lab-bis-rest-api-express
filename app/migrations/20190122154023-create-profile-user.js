@@ -24,6 +24,9 @@ module.exports = {
       tahunAngkatan: {
         type: Sequelize.STRING
       },
+      img_url: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
