@@ -10,7 +10,6 @@ exports.show = async (req,res) => {
 }
 
 exports.update = async (req,res) => {
-  req.body.img_url = req.file.path
   await models.ProfileUser.update(
     req.body,{
       where: {
@@ -18,6 +17,22 @@ exports.update = async (req,res) => {
       }
     }
   )
+  const updateProfile = await models.ProfileUser.findOne({
+    where: {
+      user_id: req.userData.id
+    }
+  })
+  res.json(updateProfile)
+}
+
+exports.updateImg = async (req,res) => {
+  await models.ProfileUser.update({
+    img_url: req.file.path
+  },{
+    where: {
+      id: req.userData.id
+    }
+  })
   const updateProfile = await models.ProfileUser.findOne({
     where: {
       user_id: req.userData.id
