@@ -25,7 +25,7 @@ exports.memberValidation = async (req,res,next) => {
     next()
   } else{
     res.status(400).json({
-      message: 'Your not member of class'
+      message: 'Class not found'
     })
   }
 }
@@ -41,21 +41,16 @@ exports.permission = (req,res,next) => {
 }
 
 exports.delete = async (req,res,next) => {
-  const checkModul = await models.Modul.findOne({
+  const checkFile = await models.File.findOne({
     where: {
-      id: req.params.idModul
+      id: req.params.idFile
     }
   })
-  if(checkModul){
-    await models.File.destroy({
-      where: {
-        modul_id: req.params.idModul
-      }
-    })
+  if(checkFile){
     next()
   }else{
     res.status(400).json({
-      message: 'Modul invalid'
+      message: 'File not found'
     })
   }
 }

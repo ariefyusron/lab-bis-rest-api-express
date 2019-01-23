@@ -8,10 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      modul_id: {
+      class_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Moduls',
+          model: 'Classes',
           key: 'id'
         }
       },
@@ -29,6 +29,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Files');
+    return queryInterface.dropTable('Moduls');
   }
 };

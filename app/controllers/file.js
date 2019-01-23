@@ -1,7 +1,7 @@
 const models = require('../models')
 
 exports.index = async (req,res) => {
-  const results = await models.Modul.findAll({
+  const results = await models.File.findAll({
     where: {
       class_id: req.params.idClass
     },
@@ -11,36 +11,36 @@ exports.index = async (req,res) => {
 }
 
 exports.store = async (req,res) => {
-  const storeModul = await models.Modul.create({
+  const storeFile = await models.File.create({
     name: req.body.name,
     class_id: req.params.idClass
   })
-  res.json(storeModul)
+  res.json(storeFile)
 }
 
 exports.update = async (req,res) => {
-  await models.Modul.update(
+  await models.File.update(
     req.body,{
       where: {
-        id: req.params.idModul
+        id: req.params.idFile
       }
     }
   )
-  const updateModul = await models.Modul.findOne({
+  const updateFile = await models.File.findOne({
     where: {
-      id: req.params.idModul
+      id: req.params.idFile
     }
   })
-  res.json(updateModul)
+  res.json(updateFile)
 }
 
 exports.delete = async (req,res) => {
-  await models.Modul.destroy({
+  await models.File.destroy({
     where: {
-      id: req.params.idModul
+      id: req.params.idFile
     }
   })
   res.json({
-    message: 'Modul successfully deleted'
+    message: 'File successfully deleted'
   })
 }

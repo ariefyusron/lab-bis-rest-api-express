@@ -30,7 +30,7 @@ exports.permission = async (req,res,next) => {
     }
   } else{
     res.status(400).json({
-      message: 'Your not member of class'
+      message: 'Class not found'
     })
   }
 }
@@ -45,7 +45,7 @@ exports.delete = async (req,res,next) => {
     next()
   } else{
     res.status(400).json({
-      message: 'Class invalid'
+      message: 'Class not found'
     }) 
   }
 }

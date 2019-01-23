@@ -1,14 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const File = sequelize.define('File', {
-    modul_id: DataTypes.INTEGER,
+  const Modul = sequelize.define('File', {
+    class_id: DataTypes.INTEGER,
     name: DataTypes.STRING
   }, {});
-  File.associate = function(models) {
+  Modul.associate = function(models) {
     // associations can be defined here
-    File.belongsTo(models.Modul, {
-      foreignKey: 'modul_id'
+    Modul.belongsTo(models.Class, {
+      foreignKey: 'class_id'
     })
   };
-  return File;
+  return Modul;
 };
