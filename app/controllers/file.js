@@ -5,7 +5,11 @@ exports.index = async (req,res) => {
     where: {
       class_id: req.params.idClass
     },
-    order: [['updatedAt','DESC']]
+    order: [['updatedAt','DESC']],
+    include: {
+      model: models.Users,
+      include: models.ProfileUser
+    }
   })
   res.json(results)
 }
@@ -13,7 +17,8 @@ exports.index = async (req,res) => {
 exports.store = async (req,res) => {
   const storeFile = await models.File.create({
     name: req.body.name,
-    class_id: req.params.idClass
+    class_id: req.params.idClass,
+    user_id: req.userData.id
   })
   res.json(storeFile)
 }
