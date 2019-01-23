@@ -10,7 +10,11 @@ exports.index = async (req,res) => {
 }
 
 exports.store = async (req,res) => {
-  
+  const storeModul = await models.Modul.create({
+    name: req.body.name,
+    class_id: req.params.idClass
+  })
+  res.json(storeModul)
 }
 
 exports.update = async (req,res) => {
