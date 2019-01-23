@@ -6,6 +6,7 @@ exports.show = async (req,res) => {
       user_id: req.userData.id
     }
   })
+  showUser.img_url = process.env.HOST+showUser.img_url
   res.json(showUser)
 }
 
@@ -22,6 +23,7 @@ exports.update = async (req,res) => {
       user_id: req.userData.id
     }
   })
+  updateProfile.img_url = process.env.HOST+updateProfile.img_url
   res.json(updateProfile)
 }
 
@@ -38,5 +40,6 @@ exports.updateImg = async (req,res) => {
       user_id: req.userData.id
     }
   })
+  updateProfile.img_url = process.env.HOST+updateProfile.img_url
   res.json(updateProfile)
 }

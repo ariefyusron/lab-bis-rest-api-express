@@ -1,5 +1,6 @@
 {
   "env": {
-    "JWT_SECRET": "ariefyusron"
+    "JWT_SECRET": "ariefyusron",
+    "HOST": "http://localhost:3000/"
   }
 }
