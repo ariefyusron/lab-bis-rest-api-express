@@ -39,3 +39,23 @@ exports.permission = (req,res,next) => {
     })
   }
 }
+
+exports.delete = async (req,res,next) => {
+  const checkModul = await models.Modul.findOne({
+    where: {
+      id: req.params.idModul
+    }
+  })
+  if(checkModul){
+    await models.File.destroy({
+      where: {
+        modul_id: req.params.idModul
+      }
+    })
+    next()
+  }else{
+    res.status(400).json({
+      message: 'Modul invalid'
+    })
+  }
+}

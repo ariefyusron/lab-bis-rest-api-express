@@ -34,5 +34,12 @@ exports.update = async (req,res) => {
 }
 
 exports.delete = async (req,res) => {
-  
+  await models.Modul.destroy({
+    where: {
+      id: req.params.idModul
+    }
+  })
+  res.json({
+    message: 'Modul successfully deleted'
+  })
 }
