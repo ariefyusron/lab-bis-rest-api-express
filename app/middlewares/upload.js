@@ -23,4 +23,18 @@ exports.uploadProfileImg = multer({
     fileSize: 1024 * 1024 * 5
   },
   fileFilter: fileFilterProfileImg
+})
+
+
+const storageDocument = multer.diskStorage({
+  destination: (req,file,cb) => {
+    cb(null, './uploads/documents/')
+  },
+  filename: (req,file,cb) => {
+    cb(null, new Date().toISOString()+'-'+req.userData.nim+'-'+file.originalname)
+  }
+})
+
+exports.uploadDocument = multer({
+  storage: storageDocument
 });
