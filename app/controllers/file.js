@@ -1,4 +1,5 @@
 const models = require('../models')
+const host = process.env.HOST
 
 exports.index = async (req,res) => {
   const results = await models.File.findAll({
@@ -11,6 +12,9 @@ exports.index = async (req,res) => {
       include: models.ProfileUser
     }
   })
+  for(i in results) {
+    results[i].file_url = host+results[i].file_url
+  }
   res.json(results)
 }
 
@@ -21,6 +25,7 @@ exports.store = async (req,res) => {
     user_id: req.userData.id,
     file_url: req.file.path
   })
+  storeFile.file_url = host+storeFile.file_url
   res.json(storeFile)
 }
 
@@ -37,6 +42,7 @@ exports.update = async (req,res) => {
       id: req.params.idFile
     }
   })
+  updateFile.file_url = host+updateFile.file_url
   res.json(updateFile)
 }
 
