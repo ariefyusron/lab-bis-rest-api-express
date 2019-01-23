@@ -2,6 +2,7 @@ const models = require('../models')
 
 exports.index = async (req,res) => {
   const results = await models.Class.findAll({
+    order: [['id','DESC']],
     include: {
       model: models.MemberClass,
       where: {
