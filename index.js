@@ -18,6 +18,7 @@ app.use((req,res,next) => {
 app.use(bodyParser.json())
 app.use(validator())
 app.use(route)
+app.use('/uploads',express.static('./uploads'))
 
 server.listen(port, () => {
   console.log('Listening on '+port)
