@@ -18,7 +18,19 @@ exports.store = async (req,res) => {
 }
 
 exports.update = async (req,res) => {
-  
+  await models.Modul.update(
+    req.body,{
+      where: {
+        id: req.params.idModul
+      }
+    }
+  )
+  const updateModul = await models.Modul.findOne({
+    where: {
+      id: req.params.idModul
+    }
+  })
+  res.json(updateModul)
 }
 
 exports.delete = async (req,res) => {

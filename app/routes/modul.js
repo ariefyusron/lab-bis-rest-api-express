@@ -7,7 +7,7 @@ const middlewareModul = require('../middlewares/modul')
 
 router.get('/class/:idClass/modul',[middlewareAuth.checkAuth,middlewareModul.memberValidation],controller.index)
 router.post('/class/:idClass/modul',[middlewareAuth.checkAuth,middlewareModul.store,middlewareModul.memberValidation,middlewareModul.permission],controller.store)
-router.patch('/modul/:id',middlewareAuth.checkAuth,controller.update)
+router.patch('/class/:idClass/modul/:idModul',[middlewareAuth.checkAuth,middlewareModul.memberValidation,middlewareModul.permission],controller.update)
 router.delete('/modul/:id',middlewareAuth.checkAuth,controller.delete)
 
 module.exports = router
