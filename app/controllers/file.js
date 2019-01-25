@@ -4,7 +4,8 @@ const host = process.env.HOST
 exports.index = async (req,res) => {
   const results = await models.File.findAll({
     where: {
-      class_id: req.params.idClass
+      class_id: req.params.idClass,
+      isDelete: 0
     },
     order: [['updatedAt','DESC']],
     include: {
@@ -47,7 +48,10 @@ exports.update = async (req,res) => {
 }
 
 exports.delete = async (req,res) => {
-  await models.File.destroy({
+  await models.File.update({
+    isDelete: 1,
+    deletedAt: new Date().toISOString()
+  },{
     where: {
       id: req.params.idFile
     }
