@@ -17,7 +17,8 @@ exports.permission = async (req,res,next) => {
   const updateClass = await models.MemberClass.findOne({
     where: {
       user_id: req.userData.id,
-      class_id: req.params.id
+      class_id: req.params.id,
+      isDelete: 0
     }
   })
   if (updateClass){
@@ -36,9 +37,13 @@ exports.permission = async (req,res,next) => {
 }
 
 exports.delete = async (req,res,next) => {
-  const deleteForeignKey = await models.MemberClass.destroy({
+  const deleteForeignKey = await models.MemberClass.update({
+    isDelete: 1,
+    deletedAt: new Date().toISOString()
+  },{
     where: {
-      class_id: req.params.id
+      class_id: req.params.id,
+      isDelete: 0
     }
   })
   if(deleteForeignKey){
