@@ -31,20 +31,28 @@ exports.store = async (req,res) => {
 }
 
 exports.update = async (req,res) => {
-  await models.File.update({
-    name: req.body.name
-  },{
-    where: {
-      id: req.params.idFile
-    }
-  })
-  const updateFile = await models.File.findOne({
-    where: {
-      id: req.params.idFile
-    }
-  })
-  updateFile.file_url = host+updateFile.file_url
-  res.json(updateFile)
+  try{
+    await models.File.update({
+      name: req.body.name
+    },{
+      where: {
+        id: req.params.idFile,
+        isDelete: 0
+      }
+    })
+    const updateFile = await models.File.findOne({
+      where: {
+        id: req.params.idFile,
+        isDelete: 0
+      }
+    })
+    updateFile.file_url = host+updateFile.file_url
+    res.json(updateFile)
+  } catch{
+    res.status(400).json({
+      message: 'File not found'
+    })
+  }
 }
 
 exports.delete = async (req,res) => {
