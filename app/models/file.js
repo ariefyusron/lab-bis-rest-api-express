@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     class_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
     name: DataTypes.TEXT,
-    file_url: DataTypes.TEXT
+    isDelete: DataTypes.BOOLEAN,
+    deletedAt: DataTypes.DATE
   }, {});
   Modul.associate = function(models) {
     // associations can be defined here
