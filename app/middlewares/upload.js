@@ -5,7 +5,7 @@ const storageProfileImg = multer.diskStorage({
     cb(null, './uploads/profile-img/')
   },
   filename: (req,file,cb) => {
-    cb(null, new Date().toISOString()+'-'+req.userData.nim+'-'+file.originalname)
+    cb(null, new Date().toISOString()+'-'+req.userData.nim+'-'+file.originalname.replace(/\s/g,''))
   }
 })
 
@@ -31,7 +31,7 @@ const storageDocument = multer.diskStorage({
     cb(null, './uploads/documents/')
   },
   filename: (req,file,cb) => {
-    cb(null, new Date().toISOString()+'-'+req.userData.nim+'-'+file.originalname)
+    cb(null, new Date().toISOString()+'-'+req.userData.nim+'-'+file.originalname.replace(/\s/g,''))
   }
 })
 
