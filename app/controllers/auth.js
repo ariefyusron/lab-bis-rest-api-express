@@ -49,3 +49,13 @@ exports.login = async (req,res) => {
     })
   }
 }
+
+exports.logout = async (req,res) => {
+  await axios.post(urlLog,{
+    nim: req.userData.nim,
+    action: 'Logout'
+  })
+  res.json({
+    message: 'Logout success'
+  })
+}
