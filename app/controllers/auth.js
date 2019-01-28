@@ -4,10 +4,11 @@ const axios = require('axios')
 
 const models = require('../models')
 const secretKey = process.env.JWT_SECRET
+const urlLog = process.env.URL_LOG
 
 exports.register = async (req,res) => {
   try{
-    axios.post('http://3.16.29.224:3000',{
+    axios.post(urlLog,{
         nim: '000000000001',
         action: 'Create user '+req.body.nim
     })
@@ -30,7 +31,7 @@ exports.login = async (req,res) => {
   if(showUser){
     const compare = bcrypt.compareSync(req.body.password || '', showUser.password)
     if(compare){
-      axios.post('http://3.16.29.224:3000',{
+      axios.post(urlLog,{
         nim: req.body.nim,
         action: ' Login'
       })
