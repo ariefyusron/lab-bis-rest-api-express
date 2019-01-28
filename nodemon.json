@@ -2,6 +2,7 @@
   "env": {
     "JWT_SECRET": "ariefyusron",
     "HOST": "http://localhost:3000/",
-    "URL_LOG": "http://3.16.29.224:3000"
+    "URL_LOG": "http://3.16.29.224:3000",
+    "ADMIN_KEY": "adminLabBis"
   }
 }
