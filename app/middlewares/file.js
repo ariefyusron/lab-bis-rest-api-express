@@ -43,3 +43,13 @@ exports.delete = async (req,res,next) => {
     })
   }
 }
+
+exports.class = async (req,res,next) => {
+  const className = await models.Class.findOne({
+    where: {
+      id: req.params.idClass
+    }
+  })
+  req.body.className = className.name
+  next()
+}
